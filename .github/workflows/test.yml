@@ -1,0 +1,19 @@
+name: test
+
+# FIXME only run on master when done testing
+on:
+  push:
+    branches: [ master]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false # prevent cancellation of all jobs is one fails
+      matrix:
+        os: [macos-11.0, macos-10.15]
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout code
+    - name: install conda
+      run: ./bug.sh
