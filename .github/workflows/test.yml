@@ -13,7 +13,15 @@ jobs:
       matrix:
         os: [macos-11.0, macos-10.15]
     steps:
-    - uses: actions/checkout@v2
-      name: Checkout code
-    - name: install conda
-      run: ./bug.sh
+    - name: Downloading miniconda
+      run: wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+    - name: Installing miniconda
+      run: chmod +x Miniconda3-latest-MacOSX-x86_64.sh && ./Miniconda3-latest-MacOSX-x86_64.sh -p python -b -f
+    - name: Create venv
+      run: yes | python/bin/conda create -n test_venv python=3.6
+    - name: Source venv
+      run: source python/etc/profile.d/conda.sh
+    - name: Activate venv
+      run: conda activate test_venv
+    - name: Verify venv
+      run: python --version
