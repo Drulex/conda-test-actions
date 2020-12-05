@@ -20,7 +20,7 @@ jobs:
     - name: Create venv
       run: python/bin/conda create -y -n test_venv python=3.6
     - name: Source venv
-      run: source python/etc/profile.d/conda.sh
+      run: source python/etc/profile.d/conda.sh && conda init
     - name: Activate venv
       run: conda activate test_venv
     - name: Verify venv
