@@ -18,7 +18,7 @@ jobs:
     - name: Installing miniconda
       run: chmod +x Miniconda3-latest-MacOSX-x86_64.sh && ./Miniconda3-latest-MacOSX-x86_64.sh -p python -b -f
     - name: Create venv
-      run: yes | python/bin/conda create -n test_venv python=3.6
+      run: python/bin/conda create -y -n test_venv python=3.6
     - name: Source venv
       run: source python/etc/profile.d/conda.sh
     - name: Activate venv
