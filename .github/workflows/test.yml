@@ -16,11 +16,13 @@ jobs:
     - name: Downloading miniconda
       run: wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
     - name: Installing miniconda
-      run: chmod +x Miniconda3-latest-MacOSX-x86_64.sh && ./Miniconda3-latest-MacOSX-x86_64.sh -p python -b -f
-    - name: Create venv
-      run: python/bin/conda create -y -n test_venv python=3.6
+      run: chmod +x Miniconda3-latest-MacOSX-x86_64.sh && bash Miniconda3-latest-MacOSX-x86_64.sh -p python -b -f
     - name: Source venv
-      run: source python/etc/profile.d/conda.sh && conda init
+      run: source python/bin/activate
+    - name: Init conda
+      run: conda init zsh
+    - name: Create venv
+      run: conda create -y -n test_venv python=3.6
     - name: Activate venv
       run: conda activate test_venv
     - name: Verify venv
